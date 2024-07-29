@@ -50,13 +50,13 @@ More information at: [Updating the Solr Schema](https://guides.dataverse.org/en/
 
 The presence of the :Languages database setting adds a dropdown in the header for multiple languages. For example to add English and French to the dropdown:
 
-`curl http://localhost:8080/api/admin/settings/:Languages -X PUT -d '[{"locale":"en","title":"English"},{"locale":"br","title":"Português"}]'`
+`curl http://localhost:8080/api/admin/settings/:Languages -X PUT -d '[{"locale":"en","title":"English"},{"locale":"br","title":"Português"},{"locale":"es","title":"Español"} ]'`
 
 When a user selects one of the available choices, the Dataverse user interfaces will be translated into that language (assuming you also configure the `lang` directory and populate it with translations as described below).
 
 ### Configuring the `lang` directory
 
-Translations for the Dataverse Software are stored in “properties” files in a directory on disk (e.g. /home/dataverse/langBundles) that you specify with the dataverse.lang.directory dataverse.lang.directory JVM option, like this:
+Translations for the Dataverse Software are stored in “properties” files in a directory on disk (e.g. /home/dataverse/langBundles) that you specify with the `dataverse.lang.directory` JVM option, like this:
 
 `asadmin --user=${ADMIN_USER} --passwordfile=${PASSWORD_FILE} create-jvm-options '-Ddataverse.lang.directory=/opt/payara/langproperties'`
 
@@ -96,9 +96,11 @@ Copy the properties files into the `languages` directory
 
 `cp -R pt_BR/*.properties /tmp/languages`
 
+`cp -R es_ES/*.properties /tmp/languages`
+
 Copy the Ecological Metadata Block translation to `languages` directory
 
-`cp ../lang/emldn.properties ../lang/emldn_br.properties /tmp/languages`
+`cp ../lang/emldn.properties ../lang/emldn_br.properties ../lang/emldn_es.properties /tmp/languages`
 
 Create the zip file
 
